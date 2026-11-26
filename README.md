@@ -32,4 +32,4 @@ all triggered by an RPA workflow.
 Coming soon.
 
 ## Known limitations
-Coming soon.
+I used fixed 10-minute windows, so a burst that straddles a boundary can be split and under-counted. A sliding window would fix that, and I'd use the median instead of the average so big bursts don't inflate the threshold

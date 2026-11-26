@@ -1,0 +1,74 @@
+[
+  {
+    "id": "KB-001",
+    "pattern": "Timeout connecting to database",
+    "severity": "High",
+    "probableCause": "Database server is down, overloaded, or unreachable over the network",
+    "steps": [
+      "Check that the database service is running",
+      "Test network connectivity to the database server",
+      "Verify the connection string and credentials in the config"
+    ],
+    "resolution": "Restart the database service or correct the connection settings, then re-run the failed job"
+  },
+  {
+    "id": "KB-002",
+    "pattern": "File not found",
+    "severity": "Medium",
+    "probableCause": "Input file was not delivered, was moved, or the path in the config is wrong",
+    "steps": [
+      "Confirm the file exists at the expected path",
+      "Check the upstream process that creates the file",
+      "Check the path setting in the configuration"
+    ],
+    "resolution": "Restore or re-deliver the file, or fix the configured path, then re-run"
+  },
+  {
+    "id": "KB-003",
+    "pattern": "Access denied",
+    "severity": "High",
+    "probableCause": "The account running the process lacks permission on the folder",
+    "steps": [
+      "Identify which account runs the process",
+      "Check folder permissions for that account",
+      "Check whether a recent permission or policy change was made"
+    ],
+    "resolution": "Grant the minimum required permission to the service account, then retry"
+  },
+  {
+    "id": "KB-004",
+    "pattern": "Null reference",
+    "severity": "High",
+    "probableCause": "Code used an object that was not initialized, often because of missing or unexpected input data",
+    "steps": [
+      "Find the input record that triggered the error",
+      "Reproduce the error with that record",
+      "Capture the stack trace and escalate to engineering"
+    ],
+    "resolution": "Engineering fixes the missing null check; meanwhile skip or correct the bad input record"
+  },
+  {
+    "id": "KB-005",
+    "pattern": "Invalid input",
+    "severity": "Low",
+    "probableCause": "A record contains data in the wrong format, such as text in a numeric field",
+    "steps": [
+      "Locate the offending record in the source data",
+      "Check how the data was entered or exported",
+      "Add input validation if it keeps happening"
+    ],
+    "resolution": "Correct the record and reprocess; add validation upstream"
+  },
+  {
+    "id": "KB-006",
+    "pattern": "Login failed",
+    "severity": "Medium",
+    "probableCause": "Wrong or expired password, locked account, or repeated attempts from an automated process",
+    "steps": [
+      "Check whether the account is locked or the password expired",
+      "Check whether the failures come from one source or many",
+      "Review recent credential changes"
+    ],
+    "resolution": "Reset or unlock the account and update stored credentials; investigate if failures come from many sources"
+  }
+]

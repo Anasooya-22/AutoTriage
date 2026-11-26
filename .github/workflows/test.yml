@@ -1,0 +1,27 @@
+name: Test LogParser package
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '11.0.x'
+
+      - name: Pack the library into a local feed
+        run: dotnet pack src/AutoTriage.LogParser -c Release -o nupkgs
+
+      - name: Install the package into the test app
+        run: dotnet restore src/AutoTriage.LogParser.Tests --source ./nupkgs
+
+      - name: Run the tests
+        run: dotnet run --project src/AutoTriage.LogParser.Tests --no-restore
