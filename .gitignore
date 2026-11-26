@@ -1,0 +1,15 @@
+# .NET build output
+bin/
+obj/
+*.nupkg
+
+# Generated output
+reports/*.html
+tickets/*.csv
+logs/**/*.log
+
+# Editor / OS
+.vscode/
+.vs/
+Thumbs.db
+.DS_Store
