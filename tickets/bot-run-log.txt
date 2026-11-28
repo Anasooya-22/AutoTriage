@@ -1,3 +1,0 @@
-﻿20261128-183610 FAILED: bad.log | Parsed 0 entries, skipped 1 unreadable lines
-ERROR: No valid log lines found in C:\Users\ansuu\Desktop\Centhazy\Resume\Projects\AutoTriage\AutoTriage\logs\processing. Nothing to analyze.
-

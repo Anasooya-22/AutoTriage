@@ -26,6 +26,12 @@ Automated log analysis and incident reporting toolkit. It reads application logs
 ### Failure handling: a bad log is quarantined, not ticketed
 ![Failure case](docs/screenshots/failure-case.png)
 
+### Power Automate Desktop flow
+![Bot flow](docs/screenshots/pad-flow.png)
+
+### CI: tests passing on GitHub Actions
+![CI tests](docs/screenshots/ci-green.png)
+
 
 
 

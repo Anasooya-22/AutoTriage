@@ -13,3 +13,5 @@ logs/**/*.log
 .vs/
 Thumbs.db
 .DS_Store
+
+tickets/*.txt
