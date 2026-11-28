@@ -20,9 +20,11 @@ Automated log analysis and incident reporting toolkit. It reads application logs
 ![HTML report: summary and suggested fixes](docs/screenshots/report.png)
 ![HTML report: error bursts and errors per hour](docs/screenshots/report-charts.png)
 
+### Tickets created by the bot
+![Tickets](docs/screenshots/tickets.png)
 
-
-
+### Failure handling: a bad log is quarantined, not ticketed
+![Failure case](docs/screenshots/failure-case.png)
 
 
 How it works
