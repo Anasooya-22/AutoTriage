@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- saved from url=(0111)file:///C:/Users/ansuu/Desktop/Centhazy/Resume/Projects/AutoTriage/AutoTriage/reports/report-20261127-0258.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoTriage Report</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; margin: 0; background: #f4f6f8; color: #1f2933; }
+  header { background: #1f3a5f; color: #fff; padding: 20px 32px; }
+  header h1 { margin: 0 0 4px; font-size: 24px; }
+  header p { margin: 0; opacity: 0.85; font-size: 14px; }
+  main { padding: 24px 32px; max-width: 1200px; margin: 0 auto; }
+  .cards { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border-radius: 8px; padding: 16px 20px; min-width: 160px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .card .num { font-size: 28px; font-weight: 700; }
+  .card .lbl { font-size: 13px; color: #52606d; }
+  section { background: #fff; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  h2 { margin-top: 0; font-size: 18px; }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e4e7eb; vertical-align: top; }
+  th { background: #f0f4f8; }
+  .bar-row { display: grid; grid-template-columns: 150px 1fr 40px; align-items: center; gap: 10px; margin: 4px 0; font-size: 13px; }
+  .bar { background: #d64545; height: 14px; border-radius: 3px; }
+  .badge { padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; }
+  .sev-high { background: #fde8e8; color: #b42318; }
+  .sev-medium { background: #fef3c7; color: #92400e; }
+  .sev-low { background: #dcfce7; color: #166534; }
+  .sev-unknown { background: #e4e7eb; color: #3e4c59; }
+</style>
+</head>
+<body>
+<header>
+  <h1>AutoTriage Report</h1>
+  <p>Generated 2026-11-27 02:58 | 4 log files analyzed</p>
+</header>
+<main>
+  <div class="cards">
+    <div class="card"><div class="num">1000</div><div class="lbl">Log lines parsed</div></div>
+    <div class="card"><div class="num">122</div><div class="lbl">Errors</div></div>
+    <div class="card"><div class="num">126</div><div class="lbl">Warnings</div></div>
+    <div class="card"><div class="num">PaymentService</div><div class="lbl">Source with most errors</div></div>
+  </div>
+
+  <section>
+    <h2>Top errors and suggested fixes</h2>
+    <div class="scroll"><table>
+      <tbody><tr><th>Count</th><th>Error</th><th>KB</th><th>Severity</th><th>Probable cause</th><th>Steps</th><th>Resolution</th></tr>
+      <tr><td>70</td><td>Timeout connecting to database server (code 504)</td><td>KB-001</td><td><span class="badge sev-high">High</span></td><td>Database server is down, overloaded, or unreachable over the network</td><td>Check that the database service is running; Test network connectivity to the database server; Verify the connection string and credentials in the config</td><td>Restart the database service or correct the connection settings, then re-run the failed job</td></tr>
+<tr><td>15</td><td>Invalid input: amount must be numeric</td><td>KB-005</td><td><span class="badge sev-low">Low</span></td><td>A record contains data in the wrong format, such as text in a numeric field</td><td>Locate the offending record in the source data; Check how the data was entered or exported; Add input validation if it keeps happening</td><td>Correct the record and reprocess; add validation upstream</td></tr>
+<tr><td>12</td><td>Null reference in InvoiceProcessor</td><td>KB-004</td><td><span class="badge sev-high">High</span></td><td>Code used an object that was not initialized, often because of missing or unexpected input data</td><td>Find the input record that triggered the error; Reproduce the error with that record; Capture the stack trace and escalate to engineering</td><td>Engineering fixes the missing null check; meanwhile skip or correct the bad input record</td></tr>
+<tr><td>10</td><td>Access denied to folder C:\data\secure</td><td>KB-003</td><td><span class="badge sev-high">High</span></td><td>The account running the process lacks permission on the folder</td><td>Identify which account runs the process; Check folder permissions for that account; Check whether a recent permission or policy change was made</td><td>Grant the minimum required permission to the service account, then retry</td></tr>
+<tr><td>8</td><td>Login failed for user admin (invalid password)</td><td>KB-006</td><td><span class="badge sev-medium">Medium</span></td><td>Wrong or expired password, locked account, or repeated attempts from an automated process</td><td>Check whether the account is locked or the password expired; Check whether the failures come from one source or many; Review recent credential changes</td><td>Reset or unlock the account and update stored credentials; investigate if failures come from many sources</td></tr>
+<tr><td>7</td><td>File not found: C:\data\input.csv</td><td>KB-002</td><td><span class="badge sev-medium">Medium</span></td><td>Input file was not delivered, was moved, or the path in the config is wrong</td><td>Confirm the file exists at the expected path; Check the upstream process that creates the file; Check the path setting in the configuration</td><td>Restore or re-deliver the file, or fix the configured path, then re-run</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2>Error bursts (anomalies)</h2>
+    <table>
+      <tbody><tr><th>Window start (10 min)</th><th>Errors</th></tr>
+      <tr><td>2026-11-23 08:40</td><td>11</td></tr>
+<tr><td>2026-11-24 08:50</td><td>15</td></tr>
+<tr><td>2026-11-25 08:40</td><td>14</td></tr>
+<tr><td>2026-11-26 09:10</td><td>16</td></tr>
+    </tbody></table>
+  </section>
+
+  <section>
+    <h2>Errors per hour</h2>
+    <div class="bar-row"><span>2026-11-23 08:00</span><div class="bar" style="width:100%"></div><span>24</span></div>
+<div class="bar-row"><span>2026-11-23 09:00</span><div class="bar" style="width:29%"></div><span>7</span></div>
+<div class="bar-row"><span>2026-11-24 08:00</span><div class="bar" style="width:100%"></div><span>24</span></div>
+<div class="bar-row"><span>2026-11-24 09:00</span><div class="bar" style="width:38%"></div><span>9</span></div>
+<div class="bar-row"><span>2026-11-24 10:00</span><div class="bar" style="width:4%"></div><span>1</span></div>
+<div class="bar-row"><span>2026-11-25 08:00</span><div class="bar" style="width:83%"></div><span>20</span></div>
+<div class="bar-row"><span>2026-11-25 09:00</span><div class="bar" style="width:21%"></div><span>5</span></div>
+<div class="bar-row"><span>2026-11-25 10:00</span><div class="bar" style="width:8%"></div><span>2</span></div>
+<div class="bar-row"><span>2026-11-26 08:00</span><div class="bar" style="width:38%"></div><span>9</span></div>
+<div class="bar-row"><span>2026-11-26 09:00</span><div class="bar" style="width:75%"></div><span>18</span></div>
+<div class="bar-row"><span>2026-11-26 10:00</span><div class="bar" style="width:12%"></div><span>3</span></div>
+  </section>
+
+  <section>
+    <h2>Entries by level</h2>
+    <table>
+      <tbody><tr><th>Level</th><th>Count</th></tr>
+      <tr><td>INFO</td><td>752</td></tr>
+<tr><td>WARN</td><td>126</td></tr>
+<tr><td>ERROR</td><td>122</td></tr>
+    </tbody></table>
+  </section>
+</main>
+
+
+</body></html>
