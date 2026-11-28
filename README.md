@@ -16,12 +16,9 @@ Automated log analysis and incident reporting toolkit. It reads application logs
 
 ## Screenshots
 
-*### HTML report*
-
-*!\[HTML report: summary and suggested fixes](docs/screenshots/report.png)*
-
-*!\[HTML report: error bursts and errors per hour](docs/screenshots/report-charts.png)*
-
+### HTML report
+![HTML report: summary and suggested fixes](docs/screenshots/report.png)
+![HTML report: error bursts and errors per hour](docs/screenshots/report-charts.png)
 
 
 
