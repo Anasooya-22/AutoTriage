@@ -20,6 +20,10 @@ Each entry: symptom, likely cause, check, fix. All entries come from problems th
 | 14 | `git push` rejected: "failed to push some refs" | GitHub has commits you do not have locally (file edited on the website) | `git status` | `git pull origin main`, then push |
 | 15 | GitHub shows a folder inside a folder | Git repository was created one level too high | Paths in the commit output | Remove `.git`, `cd` into the project folder, `git init` again |
 | 16 | A long command prompts "Supply values for the following parameters" | A command was pasted without its closing quote or its text | Read the prompt | Press Ctrl+C and paste the command on its own |
+| 17 | PAD stops with "File to delete not found" | Delete file step runs when `last-run.json` does not exist (after a failed run) | Check `Test-Path .\reports\last-run.json` | Set the step's On error to continue, or delete only if the file exists |
+| 18 | Ticket rows are joined on one line | "Append new line" is off in Write text to file | `(Get-Content .\tickets\tickets.csv).Count` is lower than expected | Turn Append new line on |
+| 19 | Ticket error counts are higher than the file's own count | A leftover log in `logs\processing` is analyzed too | `Get-ChildItem .\logs\processing` | Move leftovers back to the inbox, then run again |
+| 20 | CSV shows `Open...`, odd gaps, or twice as many lines as expected | Mixed text encodings (UTF-16 appended to single-byte text) | `($lines[1].ToCharArray() \| ForEach-Object { [int]$_ }) -join ' '` shows 0 between characters | Set the flow's file encoding to UTF-8/ASCII and write the header with `-Encoding ASCII` |
 
 ## General approach
 1. Read the exact error message and the line it points to.

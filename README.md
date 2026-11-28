@@ -27,6 +27,8 @@ Automated log analysis and incident reporting toolkit. It reads application logs
 ![Failure case](docs/screenshots/failure-case.png)
 
 
+
+
 How it works
 
 ```
@@ -75,6 +77,7 @@ The LogParser package has seven edge-case tests (see [docs/nuget-test-matrix.md]
 * The RPA flow is started manually in Power Automate Desktop. It is not scheduled.
 * The package is published to a local folder feed, not to nuget.org.
 * Built and tested on Windows PowerShell 5.1. Tests for the package run on GitHub Actions because Windows Smart App Control blocks unsigned local builds on the development machine.
+- The analyzer reads every `.log` file in the processing folder, so a leftover file from an interrupted run can inflate the results. A safer design would pass a single file path to the script.
 
 ## Documentation
 

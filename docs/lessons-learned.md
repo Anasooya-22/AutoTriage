@@ -18,9 +18,15 @@
 | 14 | Commit contained a folder inside a folder | Git repository was initialized one level too high | Removed `.git`, changed into the project folder, and initialized again |
 | 15 | `git push` would have been rejected | A file was edited on GitHub, so local and remote differed | Ran `git pull origin main` before pushing |
 | 16 | A long command asked "Supply values for the following parameters" | It was pasted without its closing quote | Stopped it, then pasted the command on its own and checked it before pressing Enter |
+| 17 | PAD run stopped with "File to delete not found" | The Delete file step errors when `last-run.json` does not exist, which happens after a failed run | Set the step's On error to continue |
+| 18 | Ticket rows ran together on one line, so the CSV could not be read as rows | "Append new line" had been turned off in the Write text to file step | Turned it back on, and checked the file with `Import-Csv` and a line count |
+| 19 | Ticket error counts were too high (65 and 61 instead of about 30) | A log left in the processing folder by an interrupted run was analyzed together with each new file | Cleaned the folder before each run, and noted the design weakness (the analyzer reads every file in its input folder) |
+| 20 | Ticket CSV had 10 lines instead of 5, and the Status column showed `Open...` | The flow appended UTF-16 text to a file whose header was single-byte text, so null characters sat between letters | Found it by printing character codes; set the flow's file encoding to UTF-8/ASCII and wrote the header with `-Encoding ASCII` |
 
 ## What I would do differently
 - Test the failure path first, not last.
 - Check a file is saved before running or publishing it.
 - Build a test with a bad input on day one.
 - Edit files in one place only (laptop or GitHub), and pull before starting.
+- Check the contents of generated files (line counts, character codes), not just how they look in a text editor.
+- Reset every folder to a known state before testing a flow.

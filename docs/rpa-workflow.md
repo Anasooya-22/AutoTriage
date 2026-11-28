@@ -20,6 +20,11 @@ Run manually from Power Automate Desktop. Attended bot: a person starts it.
 | 10 | Failure: move log to `failed`, append the PowerShell output to `bot-run-log.txt` | Quarantines bad input and keeps the reason |
 | 11 | After the loop: show "Done: processed N file(s)" | Confirms completion |
 
+## Step settings that matter
+- **Delete `last-run.json`:** On error is set to continue, because the file does not exist after a failed run.
+- **Write text to file (ticket and failure log):** append to existing content, append new line on, encoding UTF-8 or ASCII. The header line is written with ASCII, so the encodings match.
+- **Processing folder:** must be empty at the start. The analyzer reads every `.log` in it.
+
 ## Exception handling
 - The analyzer exits without writing `last-run.json` when no line can be parsed. The bot uses the missing file as its failure signal.
 - Failed files are moved aside and logged. They are not deleted.
